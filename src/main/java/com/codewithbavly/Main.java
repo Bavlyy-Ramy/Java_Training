@@ -1,55 +1,21 @@
 package com.codewithbavly;
 
-import java.time.Duration;
-
-class Counter{
-    int count;
-    public synchronized void increment(){
-        count++;
-    }
-}
-
-class A implements Runnable {
-
-    public void run(){
-        for (int i = 0; i < 10; i++) {
-            System.out.println("hi");
-
-            try {
-                Thread.sleep(Duration.ofMillis(10));
-            } catch (InterruptedException e) {throw new RuntimeException(e);}
-        }
-    }
-}
-
-class B implements Runnable {
-
-    public void run(){
-        for (int i = 0; i < 10; i++) {
-            System.out.println("hello");
-            try {
-                Thread.sleep(Duration.ofMillis(10));
-            } catch (InterruptedException e) {throw new RuntimeException(e);}
-        }
-    }
-}
-
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class Main {
-    public static void main() {
-        Runnable obj1 = new A();
-        Runnable obj2 = new B();
-        Counter counter = new Counter();
-        Thread t1 = new Thread(obj1);
-        Thread t2 = new Thread(obj2);
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<Integer>();
+        nums.add(6);
+        nums.add(4);
+        nums.add(5);
+        nums.add(8);
+        nums.add(9);
 
-        t1.start();
-        t2.start();
+        System.out.println(nums.get(2));
 
-        t1.join();
-        t2.join();
-
-        System.out.println(counter.count);
+        System.out.println(nums);
 
     }
 }
