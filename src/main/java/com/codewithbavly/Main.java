@@ -1,42 +1,62 @@
 package com.codewithbavly;
 
+import com.codewithbavly.animals.*;
+import com.codewithbavly.interfaces.*;
+import com.codewithbavly.models.*;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Scanner;
-
-class Person{
-    public void eat(){
-        System.out.println("Person is eating");
-    }
-}
 
 
 public class Main {
     public static void main(String[] args) {
 
-        int x = 5;
-        System.out.println(x);
-        System.out.println(++x);
-        Scanner scanner = new Scanner(System.in);
-        int num = scanner.nextInt();
-        if(x > num) System.out.println("x is greater than " + num);
+        Car car1 = new Car("toyota", "corolla", 2022);
+        Car car2 = new Car("bmw");
+        car1.display();
+        car2.display();
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println("i = " + i);
+        Student s = new Student();
+        s.setName("Bavy");
+        s.setAge(21);
+        System.out.println(s.getName());
+        System.out.println(s.getAge());
+
+        //Static
+        Student s2 = new Student();
+        Student s3 = new Student();
+        System.out.println("Students Created = " + Student.getCount());
+
+        //Inheritance
+        Animal a = new Animal("Animal");
+        Animal d = new Dog("DOGG");
+        Animal c = new Cat("Cat");
+
+        a.makeSound();
+        d.makeSound();
+        c.makeSound();
+
+        Animal[] animals = {
+                new Dog("rex"),
+                new Cat("max"),
+                new Dog("rocky"),
+                new Cat("m4m4")
+        };
+
+        for (Animal animal : animals) {
+            animal.makeSound();
         }
 
-        Person p1 = new Person();
-        p1.eat();
+        // Interfaces
+        Flyable[] flyers = { new Bird(), new Airplane() };
 
-        Person persons[] = new Person[3];
-        persons[0] = new Person();
-        persons[1] = new Person();
-        persons[2] = new Person();
+        for (Flyable f : flyers) { f.fly();}
 
-        persons[1].eat();
+        List<String> names = Arrays.asList("Bavly", "Ali", "John");
 
-
+        names.forEach(name -> System.out.println(name));
 
 
 
